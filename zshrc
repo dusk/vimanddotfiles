@@ -3,12 +3,13 @@
 # Environment {{{1
 # ----------------
 
-export PATH=/opt/local/lib/postgresql83/bin/:/opt/ruby-enterprise/bin:/Users/aannese/bin:/opt/local/bin:/opt/local/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/bin/X11:/usr/games:/usr/local/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/sbin:`pwd`/deport_tools:"$PATH"
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/bin/X11:`pwd`/deport_tools:"$PATH"
 
-export GREP_OPTIONS='--color=auto'
+#export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
+export CLICOLOR=1
 
-eval `dircolors -b "$HOME/.dir_colors"`
+eval `gdircolors -b "$HOME/.dir_colors"`
 
 if ! grep --color 2>&1 | grep un >/dev/null; then
     alias grep='grep --color=auto --exclude="*~" --exclude=tags'
@@ -68,7 +69,7 @@ alias sgem='sudo gem'
 
 # search
 alias grep="grep -in"
-alias ack="ack -Qi"
+alias ack="ack"
 #alias find="find /tmp -exec grep $1 '{}' /dev/null \; -print"
 alias rfind='find . -name *.rb | xargs grep -n'
 alias afind='ack-grep -il'
@@ -80,7 +81,7 @@ alias history='fc -l 1'
 alias .='pwd'
 alias ...='cd ../..'
 alias -- -='cd -'
-alias ls="ls -F --color=auto"
+alias ls="ls -F"
 alias lsd='ls -ld *(-/DN)' # directories only
 alias lsa='ls -lah'
 alias l='ls -la'
@@ -114,9 +115,13 @@ alias gasha="git stash apply"
 alias grh="git reset --hard"
 
 # server stack
-alias wf='cd ~/workfeed'
+alias wf='cd ~/ymrsrc/workfeed'
+alias sw1='ssh wgadmin@spareworker-001.sjc1.yammer.com'
+alias staging='ssh wgadmin@stageweb-001.sjc1.yammer.com'
+alias deploy='ssh -A alex@deploy-001.sjc1.yammer.com'
+alias thunderdome='ssh wgadmin@stageweb-003.sjc1.yammer.com'
+alias mdb6='psql -Uprod -h mdb-006.sjc1.yammer.com wf_production'
 alias ur="unicorn_rails"
-alias psql='psql83'
 alias db="psql -Upostgres yam_development"
 alias ptl="tail -f log/development.log"
 alias rakev='rake TESTOPTS=-v'
